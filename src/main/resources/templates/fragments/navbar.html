@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<header th:fragment="navbar" class="navbar bg-white border-bottom px-4 py-3 flex-shrink-0 w-100">
+    <div class="search-box input-group" style="max-width: 450px;">
+        <span class="input-group-text bg-transparent border-end-0 text-muted">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+        <input type="text" class="form-control border-start-0 ps-0" placeholder="Tìm kiếm sản phẩm, đơn hàng...">
+    </div>
+
+    <div class="d-flex align-items-center gap-4">
+        <div class="position-relative" style="cursor: pointer;">
+            <i class="fa-regular fa-bell fs-5 text-dark"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-2 border-white" style="font-size: 10px;">3</span>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 ps-4 border-start" style="cursor: pointer;">
+            <img th:src="${#authentication.principal.avatar}"
+                 class="rounded-circle border"
+                 width="38" height="38"
+                 style="object-fit: cover;"
+                 onerror="this.src='/assets/images/default-avatar.png'">
+
+            <div class="d-flex flex-column lh-1">
+        <span class="fw-semibold text-dark mb-1" style="font-size: 14px;"
+              sec:authentication="principal.username">Admin</span>
+                <small class="text-secondary" style="font-size: 11px;"
+                       th:text="${#authentication.authorities[0].authority.replace('ROLE_', '')}">Vai trò</small>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>
